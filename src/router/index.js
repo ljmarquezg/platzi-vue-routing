@@ -1,4 +1,3 @@
-
 import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
@@ -20,6 +19,9 @@ const routes = [
     path: "/chats",
     name: "Chats",
     component: () => import("../views/ChatsView.vue"),
+    meta: {
+      requireAuth: true
+    },
     children: [
       {
         path: ":chatId",
@@ -54,10 +56,15 @@ const router = createRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from) => {
   console.log('Navegación a una nueva ruta');
   console.log('Desde:', from);
   console.log('Hacia:', to);
+
+  if (to.meta?.requireAuth) {
+
+    return { name: 'Sesion'};
+  }
   return true;
 });
 
