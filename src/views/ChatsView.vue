@@ -1,0 +1,35 @@
+<template>
+  <div>
+    <aside>
+      <div
+          v-for="chat in chats"
+          :key="chat.id"
+      >
+        <RouterLink :to="`/chats/${chat.id}`">{{ chat.name }}</RouterLink>
+      </div>
+    </aside>
+    <article>
+      <RouterView />
+    </article>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
+
+const chats = ref([
+  {
+    id: 1,
+    name: 'Gimena'
+  },
+  {
+    id: 2,
+    name: 'Jorge'
+  },
+  {
+    id: 3,
+    name: 'Mariana'
+  }
+]);
+</script>
