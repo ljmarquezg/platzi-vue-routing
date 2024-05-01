@@ -1,6 +1,16 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import NotFoundView from "@/views/NotFoundView.vue";
 
 const routes = [
+  {
+    path: '/404',
+    component: NotFoundView,
+    name: 'NotFound'
+  },
+  {
+    path: '/:catchAll(.*)',
+    redirect: { name: 'NotFound' }
+  },
   {
     path: '/home',
     redirect: { name: 'Home' }
@@ -24,7 +34,7 @@ const routes = [
     },
     children: [
       {
-        path: ":chatId",
+        path: ":chatId(\\d+)",
         name: "Chat Details",
         component: () => import("../views/ChatDetailsView.vue"),
         props: true,
