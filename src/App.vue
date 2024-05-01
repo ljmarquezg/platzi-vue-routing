@@ -1,5 +1,10 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRouter } from 'vue-router'
+const router = useRouter();
+// Can check the env configuration
+// const isTest = import.meta.env.VITE_STAGE === 'test';
+// Or can check the route
+const showProfile = router.hasRoute('profile');
 </script>
 
 <template>
@@ -12,6 +17,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink :to="{name: 'Chats'}">Chats</RouterLink>
         <RouterLink :to="{name: 'About'}">About</RouterLink>
         <RouterLink :to="{name: 'Sesion'}">Sesion</RouterLink>
+        <RouterLink v-if="showProfile" :to="{name: 'Profile'}">Profile</RouterLink>
       </nav>
     </div>
   </header>
