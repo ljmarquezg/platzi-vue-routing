@@ -61,10 +61,10 @@ router.beforeEach((to, from) => {
   console.log('Desde:', from);
   console.log('Hacia:', to);
 
-  if (to.meta?.requireAuth) {
+  /*if (to.meta?.requireAuth) {
 
     return { name: 'Sesion'};
-  }
+  }*/
   return true;
 });
 
