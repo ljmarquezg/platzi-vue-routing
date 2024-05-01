@@ -54,4 +54,11 @@ const router = createRouter({
   routes
 });
 
+router.beforeEach((to, from, next) => {
+  console.log('Navegación a una nueva ruta');
+  console.log('Desde:', from);
+  console.log('Hacia:', to);
+  return true;
+});
+
 export default router;
