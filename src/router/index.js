@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import NotFoundView from "@/views/NotFoundView.vue";
 
+const stage = import.meta.env.VITE_STAGE;
+
 const routes = [
   {
     path: '/404',
@@ -65,6 +67,14 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 });
+
+if(stage === 'test') {
+  router.addRoute({
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('../views/ProfileView.vue'),
+  })
+}
 
 router.beforeEach((to, from) => {
   console.log('Navegación a una nueva ruta');
