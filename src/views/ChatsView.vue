@@ -9,27 +9,38 @@
       </div>
     </aside>
     <article>
-      <RouterView />
+      <RouterView/>
     </article>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
+import { ref, watch } from 'vue';
+import { RouterLink, useRoute } from 'vue-router';
 
-const chats = ref([
-  {
-    id: 1,
-    name: 'Gimena'
-  },
-  {
-    id: 2,
-    name: 'Jorge'
-  },
-  {
-    id: 3,
-    name: 'Mariana'
-  }
-]);
+const chats = ref([]);
+const route = useRoute();
+
+watch(
+    () => route.params,
+    (params) => {
+      chats.value = [
+        {
+          id: 1,
+          name: 'Gimena'
+        },
+        {
+          id: 2,
+          name: 'Jorge'
+        },
+        {
+          id: 3,
+          name: 'Mariana'
+        }
+      ];
+    },
+    { immediate: true }
+);
+
+
 </script>
